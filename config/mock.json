@@ -1,0 +1,5 @@
+{
+    "apiBase": "/run-api",
+    "apiHost": "https://easy-mock.com/mock/5d0b37345e163605f675d4fe",
+    "contentBase": "dist"
+}
