@@ -1,10 +1,19 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 export const del = id => ({
     type: 'DEL',
     id
 })
-
+// 模拟异步操作
+export const int = list => dispatch => {
+    setTimeout(() => {
+        dispatch({
+            type: 'INT',
+            list
+        })
+    }, 3000)
+}
 const listReducer = (state = [], action) => {
     switch (action.type) {
         case 'INT':
@@ -15,4 +24,4 @@ const listReducer = (state = [], action) => {
             return state
     }
 }
-export default createStore(listReducer)
+export default createStore(listReducer, applyMiddleware(thunk))

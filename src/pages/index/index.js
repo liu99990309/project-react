@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './index.less'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { int } from '@src/store'
 
 function transDate(dateNum) {
     const date = new Date(1900, 0, dateNum - 1)
@@ -11,7 +12,7 @@ function transDate(dateNum) {
     }
 }
 
-function Index({ dispatch }) {
+function Index({ int }) {
     const [uploaded, setUploaded] = useState(false)
     const history = useHistory()
 
@@ -41,14 +42,19 @@ function Index({ dispatch }) {
         reader.readAsText(obj.files[0])
         reader.onload = function () {
             let data = csvToObject(this.result)
-            dispatch({
-                type: 'INT',
-                list: data.map((item, index) => {
-                    const { month, year } = transDate(~~item.date)
-                    return { ...item, id: index + 1, year, month, price: parseInt(item.price, 10), count: parseInt(item.count, 10), total: parseInt(item.total, 10), monthString: `${year}_${('0' + month).slice(-2)}` }
+            // dispatch({
+            //     type: 'INT',
+            //     list: data.map((item, index) => {
+            //         const { month, year } = transDate(~~item.date)
+            //         return { ...item, id: index + 1, year, month, price: parseInt(item.price, 10), count: parseInt(item.count, 10), total: parseInt(item.total, 10), monthString: `${year}_${('0' + month).slice(-2)}` }
 
-                })
-            })
+            //     })
+            // })
+            int(data.map((item, index) => {
+                const { month, year } = transDate(~~item.date)
+                return { ...item, id: index + 1, year, month, price: parseInt(item.price, 10), count: parseInt(item.count, 10), total: parseInt(item.total, 10), monthString: `${year}_${('0' + month).slice(-2)}` }
+
+            }))
             history.push('/table')
         }
     }
@@ -61,4 +67,7 @@ function Index({ dispatch }) {
     )
 }
 
-export default connect()(Index)
+const mapDispatchToProps = {
+    int
+}
+export default connect(() => { }, mapDispatchToProps)(Index)
