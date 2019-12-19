@@ -70,4 +70,4 @@ function Index({ int }) {
 const mapDispatchToProps = {
     int
 }
-export default connect(() => { }, mapDispatchToProps)(Index)
+export default connect(() => ({}), mapDispatchToProps)(Index)
