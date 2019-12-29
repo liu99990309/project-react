@@ -13,6 +13,7 @@ function transDate(dateNum) {
 }
 
 function Index({ int }) {
+
     const [uploaded, setUploaded] = useState(false)
     const history = useHistory()
 
@@ -70,4 +71,5 @@ function Index({ int }) {
 const mapDispatchToProps = {
     int
 }
+
 export default connect(() => ({}), mapDispatchToProps)(Index)

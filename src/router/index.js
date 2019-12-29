@@ -1,6 +1,7 @@
 import Index from '@src/pages/index'
 import TableList from '@src/pages/table-list'
 import Chart from '@src/pages/chart'
+import FileUpload from '@src/pages/file-upload'
 
 export default [
     {
@@ -17,5 +18,10 @@ export default [
         path: '/chart',
         title: '查看图表',
         component: Chart
+    },
+    {
+        path: '/file-upload',
+        title: '图片上传',
+        component: FileUpload
     }
 ]
