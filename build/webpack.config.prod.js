@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const cleanWebpackPlugin = require('clean-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const getLoaders = require('./loaders')
@@ -30,7 +29,6 @@ module.exports = env => {
             rules: getLoaders({ style: ['css', 'less'], env: 'production' })
         },
         plugins: [
-            new cleanWebpackPlugin(),
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash].css',
                 reloadAll: true
